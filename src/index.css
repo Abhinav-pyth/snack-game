@@ -125,10 +125,12 @@
   -webkit-touch-callout: none;
 }
 
-/* Smooth scrolling prevention on mobile */
+/* Allow page scrolling but prevent overscroll bounce on mobile */
 html, body {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overscroll-behavior: none;
 }

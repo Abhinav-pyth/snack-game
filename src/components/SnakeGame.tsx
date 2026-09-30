@@ -125,7 +125,7 @@ export default function SnakeGame() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 flex flex-col items-center justify-center p-4 select-none">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 flex flex-col items-center justify-start py-6 px-4 pb-10 select-none">
       {/* Header */}
       <div className="w-full max-w-lg mb-4">
         <h1 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">
@@ -155,8 +155,8 @@ export default function SnakeGame() {
       {/* Game Board */}
       <div
         ref={boardRef}
-        className="relative w-full max-w-lg aspect-square rounded-xl overflow-hidden border-2 border-gray-700 shadow-2xl shadow-green-900/20"
-        style={{ touchAction: 'none' }}
+        className="relative w-full aspect-square rounded-xl overflow-hidden border-2 border-gray-700 shadow-2xl shadow-green-900/20 mx-auto"
+        style={{ touchAction: 'none', maxWidth: 'min(90vw, 70vmin, 32rem)' }}
       >
         {/* Grid background */}
         <div className="absolute inset-0 bg-gray-800/90">
