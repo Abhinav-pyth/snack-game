@@ -63,6 +63,61 @@
   animation: fadeIn 0.3s ease-out;
 }
 
+/* Speed slider custom styles */
+.speed-slider {
+  background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
+  border-radius: 9999px;
+  outline: none;
+}
+
+.speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid #10b981;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.speed-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.5);
+}
+
+.speed-slider::-webkit-slider-thumb:active {
+  transform: scale(1.05);
+}
+
+.speed-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid #10b981;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.speed-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.5);
+}
+
+.speed-slider:disabled::-webkit-slider-thumb {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.speed-slider:disabled::-moz-range-thumb {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Prevent text selection during gameplay */
 .select-none {
   -webkit-user-select: none;

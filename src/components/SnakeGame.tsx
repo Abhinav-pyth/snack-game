@@ -10,6 +10,7 @@ export default function SnakeGame() {
     status,
     score,
     difficulty,
+    speed,
     highScore,
     gridSize,
     startGame,
@@ -18,6 +19,7 @@ export default function SnakeGame() {
     restartGame,
     changeDirection,
     changeDifficulty,
+    changeSpeed,
   } = useSnakeGame();
 
   const boardRef = useRef<HTMLDivElement>(null);
@@ -210,6 +212,30 @@ export default function SnakeGame() {
 
       {/* Controls */}
       <div className="w-full max-w-lg mt-4 flex flex-col gap-3">
+        {/* Speed Controller */}
+        <div className="bg-gray-800/50 rounded-xl p-3 border border-gray-700/50">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">⚡ Speed</span>
+            <span className="text-xs font-mono text-emerald-400 bg-gray-700/50 px-2 py-0.5 rounded">
+              {speed <= 80 ? 'Fast' : speed <= 130 ? 'Normal' : 'Slow'} ({speed}ms)
+            </span>
+          </div>
+          <input
+            type="range"
+            min="40"
+            max="250"
+            step="10"
+            value={speed}
+            onChange={(e) => changeSpeed(Number(e.target.value))}
+            disabled={status === 'playing'}
+            className="speed-slider w-full h-2 rounded-full appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          />
+          <div className="flex justify-between text-[10px] text-gray-500 mt-1 px-0.5">
+            <span>🐢 Slow</span>
+            <span>🐇 Fast</span>
+          </div>
+        </div>
+
         {/* Difficulty Selector */}
         <div className="flex justify-center gap-2">
           {difficulties.map(d => (

@@ -17,6 +17,8 @@ const SPEED_MAP: Record<Difficulty, number> = {
   hard: 70,
 };
 
+const DEFAULT_SPEED = 120;
+
 const SCORE_MAP: Record<Difficulty, number> = {
   easy: 5,
   medium: 10,
@@ -63,6 +65,7 @@ export function useSnakeGame() {
   const [status, setStatus] = useState<GameStatus>('idle');
   const [score, setScore] = useState(0);
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
+  const [speed, setSpeed] = useState(DEFAULT_SPEED);
   const [highScore, setHighScoreState] = useState(() => getHighScore('medium'));
 
   const directionRef = useRef<Direction>('RIGHT');
@@ -149,9 +152,8 @@ export function useSnakeGame() {
 
   const startGameLoop = useCallback(() => {
     clearGameLoop();
-    const speed = SPEED_MAP[difficulty];
     gameLoopRef.current = window.setInterval(tick, speed);
-  }, [clearGameLoop, tick, difficulty]);
+  }, [clearGameLoop, tick, speed]);
 
   const startGame = useCallback(() => {
     const initialSnake = [...INITIAL_SNAKE];
@@ -211,6 +213,12 @@ export function useSnakeGame() {
   const changeDifficulty = useCallback((newDifficulty: Difficulty) => {
     setDifficulty(newDifficulty);
     setHighScoreState(getHighScore(newDifficulty));
+    // Sync speed with difficulty preset
+    setSpeed(SPEED_MAP[newDifficulty]);
+  }, []);
+
+  const changeSpeed = useCallback((newSpeed: number) => {
+    setSpeed(newSpeed);
   }, []);
 
   // Start game loop when game starts
@@ -233,6 +241,7 @@ export function useSnakeGame() {
     status,
     score,
     difficulty,
+    speed,
     highScore,
     gridSize: GRID_SIZE,
     startGame,
@@ -241,5 +250,6 @@ export function useSnakeGame() {
     restartGame,
     changeDirection,
     changeDifficulty,
+    changeSpeed,
   };
 }
